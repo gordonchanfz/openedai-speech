@@ -14,6 +14,8 @@ COPY requirements*.txt /app/
 RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements-min.txt
 COPY *.py *.sh *.default.yaml README.md LICENSE /app/
 
+RUN sed -i 's|/v1/audio/speech|/api/v1/audio/speech|g' speech.py
+
 ENV TTS_HOME=voices
 ENV HF_HOME=voices
 
